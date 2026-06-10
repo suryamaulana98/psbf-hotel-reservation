@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+// Gunakan environment variable jika ada, jika tidak gunakan relative path '/api' (untuk Vercel) atau fallback localhost
+const baseURL = import.meta.env.VITE_API_URL || '/api';
+
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: baseURL,
 });
 
 // Interceptor untuk menambahkan token JWT ke setiap request

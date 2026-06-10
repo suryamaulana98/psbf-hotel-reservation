@@ -28,7 +28,8 @@ const createBooking = async (req, res) => {
     let payment_proof = null;
 
     if (req.file) {
-        payment_proof = `/uploads/${req.file.filename}`;
+        const base64String = req.file.buffer.toString('base64');
+        payment_proof = `data:${req.file.mimetype};base64,${base64String}`;
     }
 
     if (!room_id || !check_in_date || !check_out_date || !payment_proof) {

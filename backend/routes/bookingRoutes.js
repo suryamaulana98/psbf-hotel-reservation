@@ -5,15 +5,8 @@ const { verifyToken, verifyAdmin } = require('../middlewares/authMiddleware');
 const multer = require('multer');
 const path = require('path');
 
-// Setup multer storage for payment proofs
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../public/uploads/'));
-    },
-    filename: (req, file, cb) => {
-        cb(null, 'payment_' + Date.now() + path.extname(file.originalname));
-    }
-});
+// Setup multer storage for payment proofs in memory
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Public Routes (or verifyToken for dates if you want, but it's safe to be public for checking availability)

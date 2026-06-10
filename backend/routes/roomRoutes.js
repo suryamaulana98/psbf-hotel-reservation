@@ -5,15 +5,8 @@ const { verifyToken, verifyAdmin } = require('../middlewares/authMiddleware');
 const multer = require('multer');
 const path = require('path');
 
-// Setup multer storage
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../public/uploads/'));
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
+// Setup multer storage to use memory (RAM) instead of disk
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Public Routes

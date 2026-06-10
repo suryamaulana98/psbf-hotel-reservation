@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const path = require('path');
 
 dotenv.config();
 
@@ -14,9 +13,10 @@ if (PORT == 3306) {
 
 // Middleware
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// Karena di Vercel kita menggunakan Base64, folder static uploads tidak lagi relevan
+// app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // Routes import
 const authRoutes = require('./routes/authRoutes');
@@ -38,3 +38,6 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server berjalan di http://localhost:${PORT}`);
 });
+
+// Ekspor app agar bisa berjalan sebagai Serverless Function di Vercel
+module.exports = app;

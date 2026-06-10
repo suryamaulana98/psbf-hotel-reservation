@@ -17,7 +17,8 @@ const createRoom = async (req, res) => {
     let image_url = null;
 
     if (req.file) {
-        image_url = `/uploads/${req.file.filename}`;
+        const base64String = req.file.buffer.toString('base64');
+        image_url = `data:${req.file.mimetype};base64,${base64String}`;
     }
 
     if (!room_type || !price) {
@@ -42,7 +43,8 @@ const updateRoom = async (req, res) => {
     let image_url = req.body.image_url;
 
     if (req.file) {
-        image_url = `/uploads/${req.file.filename}`;
+        const base64String = req.file.buffer.toString('base64');
+        image_url = `data:${req.file.mimetype};base64,${base64String}`;
     }
 
     try {
