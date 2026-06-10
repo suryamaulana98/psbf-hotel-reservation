@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const { uploadToCloudinary } = require('../config/cloudinary');
 
 const getAllHotels = async (req, res) => {
     try {
@@ -29,8 +30,12 @@ const createHotel = async (req, res) => {
     let image_url = null;
 
     if (req.file) {
-        const base64String = req.file.buffer.toString('base64');
-        image_url = `data:${req.file.mimetype};base64,${base64String}`;
+        try {
+            image_url = await uploadToCloudinary(req.file.buffer, 'hotels');
+        } catch (err) {
+            console.error('Cloudinary upload error:', err);
+            return res.status(500).json({ message: 'Gagal mengunggah gambar ke Cloudinary' });
+        }
     }
 
     if (!name || !address || !city) {
@@ -55,8 +60,12 @@ const updateHotel = async (req, res) => {
     let image_url = req.body.image_url;
 
     if (req.file) {
-        const base64String = req.file.buffer.toString('base64');
-        image_url = `data:${req.file.mimetype};base64,${base64String}`;
+        try {
+            image_url = await uploadToCloudinary(req.file.buffer, 'hotels');
+        } catch (err) {
+            console.error('Cloudinary upload error:', err);
+            return res.status(500).json({ message: 'Gagal mengunggah gambar ke Cloudinary' });
+        }
     }
 
     try {

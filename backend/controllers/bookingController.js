@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const { uploadToCloudinary } = require('../config/cloudinary');
 
 // Mengambil tanggal yang sudah di-booking pada suatu kamar
 const getBookedDatesByRoom = async (req, res) => {
@@ -28,8 +29,12 @@ const createBooking = async (req, res) => {
     let payment_proof = null;
 
     if (req.file) {
-        const base64String = req.file.buffer.toString('base64');
-        payment_proof = `data:${req.file.mimetype};base64,${base64String}`;
+        try {
+            payment_proof = await uploadToCloudinary(req.file.buffer, 'bookings');
+        } catch (err) {
+            console.error('Cloudinary upload error:', err);
+            return res.status(500).json({ message: 'Gagal mengunggah bukti pembayaran ke Cloudinary' });
+        }
     }
 
     if (!room_id || !check_in_date || !check_out_date || !payment_proof) {

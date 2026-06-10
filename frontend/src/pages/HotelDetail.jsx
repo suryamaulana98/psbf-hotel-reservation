@@ -166,7 +166,7 @@ const HotelDetail = () => {
             {/* Header Hotel */}
             <div style={{ height: '500px', width: '100%', position: 'relative', marginTop: '-5rem' }}>
                 <img 
-                    src={hotel.image_url ? (hotel.image_url.startsWith('data:image') ? hotel.image_url : `http://localhost:5000${hotel.image_url}`) : 'https://images.unsplash.com/photo-1566073171639-4d8e8d536ff2?auto=format&fit=crop&w=1920&q=80'} 
+                    src={hotel.image_url ? (hotel.image_url.startsWith('http') || hotel.image_url.startsWith('data:image') ? hotel.image_url : `http://localhost:5000${hotel.image_url}`) : 'https://images.unsplash.com/photo-1566073171639-4d8e8d536ff2?auto=format&fit=crop&w=1920&q=80'} 
                     alt={hotel.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -211,7 +211,7 @@ const HotelDetail = () => {
                                 >
                                     <div style={{ width: '200px', height: '160px', flexShrink: 0, borderRadius: 'var(--radius)', overflow: 'hidden' }}>
                                         <img 
-                                            src={room.image_url ? (room.image_url.startsWith('data:image') ? room.image_url : `http://localhost:5000${room.image_url}`) : 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80'} 
+                                            src={room.image_url ? (room.image_url.startsWith('http') || room.image_url.startsWith('data:image') ? room.image_url : `http://localhost:5000${room.image_url}`) : 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80'} 
                                             alt={room.room_type}
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         />
