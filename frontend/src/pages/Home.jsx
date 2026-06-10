@@ -63,7 +63,7 @@ const Home = () => {
                                 <div className="card">
                                     <div className="card-img-wrapper">
                                         <img 
-                                            src={hotel.image_url ? `http://localhost:5000${hotel.image_url}` : 'https://images.unsplash.com/photo-1566073171639-4d8e8d536ff2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'} 
+                                            src={hotel.image_url ? (hotel.image_url.startsWith('data:image') ? hotel.image_url : `http://localhost:5000${hotel.image_url}`) : 'https://images.unsplash.com/photo-1566073171639-4d8e8d536ff2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'} 
                                             alt={hotel.name} 
                                             className="card-img" 
                                         />

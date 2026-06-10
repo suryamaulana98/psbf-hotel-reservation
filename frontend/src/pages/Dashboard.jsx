@@ -406,12 +406,12 @@ const Dashboard = () => {
                                                         <div style={{ fontWeight: 700, marginBottom: '0.5rem' }}>Rp {parseFloat(b.total_price).toLocaleString('id-ID')}</div>
                                                         {b.payment_proof ? (
                                                             <div 
-                                                                onClick={() => setModalImage(`http://localhost:5000${b.payment_proof}`)}
+                                                                onClick={() => setModalImage(b.payment_proof.startsWith('data:image') ? b.payment_proof : `http://localhost:5000${b.payment_proof}`)}
                                                                 style={{ cursor: 'pointer', display: 'inline-block' }}
                                                                 title="Klik untuk perbesar"
                                                             >
                                                                 <img 
-                                                                    src={`http://localhost:5000${b.payment_proof}`} 
+                                                                    src={b.payment_proof.startsWith('data:image') ? b.payment_proof : `http://localhost:5000${b.payment_proof}`} 
                                                                     alt="Bukti Transfer" 
                                                                     style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border)', transition: 'transform 0.2s', ':hover': { transform: 'scale(1.05)' } }} 
                                                                 />

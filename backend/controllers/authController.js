@@ -28,8 +28,8 @@ const register = async (req, res) => {
 
         res.status(201).json({ message: 'Registrasi berhasil! Silakan login.' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Terjadi kesalahan pada server.' });
+        console.error('Error saat register:', error);
+        res.status(500).json({ message: 'Terjadi kesalahan pada server.', error: error.message, stack: error.stack });
     }
 };
 
@@ -73,8 +73,8 @@ const login = async (req, res) => {
             }
         });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Terjadi kesalahan pada server.' });
+        console.error('Error saat login:', error);
+        res.status(500).json({ message: 'Terjadi kesalahan pada server.', error: error.message, stack: error.stack });
     }
 };
 
