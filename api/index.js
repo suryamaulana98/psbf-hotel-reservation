@@ -35,9 +35,12 @@ app.get('/', (req, res) => {
     res.send('API Sistem Reservasi Hotel Berjalan Lancar!');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+// Hanya jalankan app.listen jika tidak berada di environment Vercel (production)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server berjalan di http://localhost:${PORT}`);
+    });
+}
 
 // Ekspor app agar bisa berjalan sebagai Serverless Function di Vercel
 module.exports = app;
