@@ -4,7 +4,7 @@ Sistem Reservasi Hotel berbasis web (Full-Stack) yang dibangun menggunakan React
 
 ## 🌟 Fitur Utama
 
-### Pengguna (Guest / User)
+### Pengguna (Guest / User) 
 - **Autentikasi**: Registrasi dan Login akun.
 - **Pencarian Kamar**: Melihat daftar hotel dan tipe kamar yang tersedia.
 - **Pemesanan (Booking)**: Memesan kamar pada tanggal tertentu.
