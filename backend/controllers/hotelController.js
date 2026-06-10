@@ -6,7 +6,7 @@ const getAllHotels = async (req, res) => {
         res.status(200).json(hotels);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Gagal mengambil data hotel' });
+        res.status(500).json({ message: 'Gagal mengambil data hotel', error: error.message, stack: error.stack });
     }
 };
 

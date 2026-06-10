@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
-import { MapPin, Star, Search, ArrowRight } from 'lucide-react';
+import { MapPin, Star, Search, ArrowRight, Building2 } from 'lucide-react';
 
 const Home = () => {
     const [hotels, setHotels] = useState([]);

@@ -10,7 +10,10 @@ const pool = mysql.createPool({
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
 
-    ssl: {
+    ssl: process.env.NODE_ENV === 'production' ? {
+        minVersion: 'TLSv1.2',
+        rejectUnauthorized: true
+    } : {
         rejectUnauthorized: false
     },
 
