@@ -325,9 +325,9 @@ const Dashboard = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {financeData.map((b) => (
+                                            {financeData.map((b, index) => (
                                                 <tr key={b.id}>
-                                                    <td style={{ fontWeight: 600 }}>#{b.id}</td>
+                                                    <td style={{ fontWeight: 600 }}>#{index + 1}</td>
                                                     <td>
                                                         <div style={{ fontWeight: 700 }}>{b.user_name}</div>
                                                         <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{b.hotel_name} - {b.room_type}</div>
@@ -391,9 +391,9 @@ const Dashboard = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {bookings.map((b) => (
+                                            {bookings.map((b, index) => (
                                                 <tr key={b.id}>
-                                                    <td style={{ fontWeight: 600, color: 'var(--primary)' }}>#{b.id}</td>
+                                                    <td style={{ fontWeight: 600, color: 'var(--primary)' }}>#{index + 1}</td>
                                                     <td style={{ fontWeight: 600 }}>{b.user_name}</td>
                                                     <td>
                                                         <div style={{ fontWeight: 600 }}>{b.hotel_name}</div>

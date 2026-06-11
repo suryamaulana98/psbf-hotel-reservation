@@ -112,9 +112,9 @@ const AdminHotels = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {hotels.map(h => (
+                            {hotels.map((h, index) => (
                                 <tr key={h.id}>
-                                    <td style={{ fontWeight: 600, color: 'var(--text-muted)' }}>#{h.id}</td>
+                                    <td style={{ fontWeight: 600, color: 'var(--text-muted)' }}>#{index + 1}</td>
                                     <td style={{ fontWeight: 600 }}>{h.name}</td>
                                     <td>{h.city}</td>
                                     <td style={{ textAlign: 'right' }}>
